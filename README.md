@@ -2,8 +2,6 @@
 
 To-do list
 
-* After cloning the repository, enter personal parameters in the .env.prod and .env.prod.db files
-
 * It is necessary to grant write permissions for the root and its incoming files and folders (* chmod -R 755 (your path to the root folder) )
 
 Starting the project build:
