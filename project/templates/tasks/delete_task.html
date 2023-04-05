@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load tasks_tags %}
+
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+{% block main %}
+    
+    <form method="post">
+        <div class="modal-header my-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3>{{ title }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% csrf_token %}
+
+        
+        <div class="container my-5" style="max-width: 400px;" >
+            <div class="row">
+                <ul class="list-group justify-content-around">
+                    <li class="list-group-item "><span class="h6">Название: </span>{{ task.name }}</li>
+                    <li class="list-group-item"><span class="h6">Описание:  </span>{{ task.description }}</li>
+                    <li class="list-group-item"><span class="h6">Статус выполнения:  </span>{% normalize_status task.status %}</li>
+                    <li class="list-group-item"><span class="h6">Дата создания:  </span>{{ task.time_created }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-footer justify-content-around">
+            <button type="submit" class="btn btn-primary">Удалить задачу</button>
+        </div>
+    </form>
+{% endblock main %}

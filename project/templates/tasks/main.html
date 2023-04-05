@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load tasks_tags %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+{% block main %}
+    
+    
+    <form action="{% url 'main' %}" method="get" class="row row-cols-lg-auto g-3 align-items-center justify-content-center mt-5" id="filterForm">
+        <div>
+            Фильтрация:
+        </div>
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="status" id="btnradio1" autocomplete="off" value="Выполнено" onchange="submitfilterForm()">
+            <label class="btn btn-outline-primary" for="btnradio1">Выполнено</label>
+          
+            <input type="radio" class="btn-check" name="status" id="btnradio2" autocomplete="off" value="Не выполнено" onchange="submitfilterForm()">
+            <label class="btn btn-outline-primary" for="btnradio2">Не выполнено</label>
+        </div>
+    </form>
+    
+    
+    <form action="{% url 'main' %}" method="get" class="row row-cols-lg-auto g-3 align-items-center justify-content-center mt-3" id="orderForm">
+        <div>
+            Сортировка:
+        </div>
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="order" id="btnradio3" autocomplete="off" value="Дата создания" onchange="submitOrderForm()">
+            <label class="btn btn-outline-primary" for="btnradio3">Дата создания</label>
+        </div>
+    </form>
+    {% for t in tasks %}
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12">
+                    <ul class="list-group justify-content-around">
+                        <li class="list-group-item "><span class="h6">Название: </span><a href="{% url 'update' t.pk %}" class="text-decoration-none">{{ t.name }}</a></li>
+                        <li class="list-group-item"><span class="h6">Описание:  </span>{{ t.description }}</li>
+                        <li class="list-group-item"><span class="h6">Статус выполнения:  </span>{% normalize_status t.status %}</li>
+                        <li class="list-group-item"><span class="h6">Дата создания:  </span>{{ t.time_created }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    
+
+{% endblock main %}

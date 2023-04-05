@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+{% block main %}
+    
+    <form method="post" class="">
+        <div class="modal-header my-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3>{{ title }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+        
+        <div class="container" style="max-width: 400px;">
+            <div class="row">
+                {% for f in form %}
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        {{ f }}
+                        <label for="{% cycle 'Name' 'Description' %}" class="form-label">{% cycle 'Название задачи' 'Описание задачи' %}</label>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="modal-footer justify-content-around">
+            <button type="submit" class="btn btn-primary">Создать задачу</button>
+        </div>
+            
+    </form>
+{% endblock main %}

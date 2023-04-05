@@ -1,0 +1,42 @@
+html {
+    scroll-behavior: smooth;
+}
+
+
+header, footer, section {
+    padding: 30px 0;
+}
+
+
+header {
+    background-color: #6c757d;
+}
+
+body {
+    background: ghostwhite;
+}
+
+
+
+#logo {
+    font-size: 200%;
+    font-weight: 600;
+    color: white
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

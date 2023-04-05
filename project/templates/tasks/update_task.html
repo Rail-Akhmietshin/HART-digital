@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+{% block main %}
+    
+    <form method="post" class="">
+        <div class="modal-header my-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3>{{ title }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+        
+        <div class="container" style="max-width: 400px;">
+            <div class="row">
+                {% for f in form %}
+                <div class="col-12">
+                    <div class="form-floating mb-4">
+                        {{ f }}
+                        <label for="{% cycle 'Name' 'Description' 'Status' %}" class="form-label">{% cycle 'Название задачи' 'Описание задачи' 'Статус задачи' %}</label>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="modal-footer justify-content-center">
+            <button type="submit" class="btn btn-primary">Обновить задачу</button>
+        </div>
+    </form>
+    <form action="{% url 'delete' task.pk %}" method="post" class="text-center">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Удалить задачу</button>
+    </form>
+{% endblock main %}
