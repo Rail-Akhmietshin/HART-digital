@@ -9,6 +9,7 @@ To-do list
 Starting the project build:
 
 * docker-compose up -d --build
+
 After successfully running the project in Docker, write the following commands in the console to perform migrations and collect static files:
 
 * docker-compose exec web python manage.py migrate
